@@ -64,7 +64,22 @@ app.get("/recipes", (req, res) => {
 //  Iteration 7 - Delete a Single Recipe
 //  DELETE  /recipes/:id route
 
-
+//  Iteration 8 - Add create random recipe api method so I don't have to use Postman ;)
+app.get("/recipes/create-test", (req, res) => {
+  Recipe.create({
+    title: "Test Spaghetti",
+    instructions: "Cook the spaghetti and add the sauce.",
+    level: "Easy Peasy",
+    ingredients: ["spaghetti", "tomatoes", "cheese"],
+    duration: 20
+  })
+    .then((recipe) => {
+      res.status(201).json(recipe);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
 
 // Start the server
 app.listen(3000, () => console.log('My first app listening on port 3000!'));
