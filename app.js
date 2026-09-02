@@ -30,7 +30,15 @@ app.get('/', (req, res) => {
 
 
 //  Iteration 3 - Create a Recipe route
-//  POST  /recipes route
+app.post("/recipes", (req, res) => {
+  Recipe.create(req.body)
+    .then((recipe) => {
+      res.status(201).json(recipe);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Failed to create recipe" });
+    });
+});
 
 
 //  Iteration 4 - Get All Recipes
